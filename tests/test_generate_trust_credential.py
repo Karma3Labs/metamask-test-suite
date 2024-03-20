@@ -3,7 +3,7 @@ import json
 import sys
 sys.path.append('..')
 
-from utils.common import generate_trust_credential_with_swe_role, generate_trust_credential_with_auditor_role, generate_trust_credential_with_swe_and_auditor_role
+from utils.common import generate_trust_credential_with_swe_role, generate_trust_credential_with_auditor_role, generate_trust_credential_with_swe_and_auditor_role, generate_trust_credential_with_honesty_role
 
 
 """
@@ -36,3 +36,9 @@ if __name__ == "__main__":
         auditor_trust_level=1
     )
     print(json.dumps(test_generate_trust_credential_with_swe_and_auditor_role, indent=2))
+
+    test_generate_trust_credential_with_honesty_role = generate_trust_credential_with_honesty_role(
+        src_address=ta_1,
+        dest_address=eoa_1,
+    )
+    print(json.dumps(test_generate_trust_credential_with_honesty_role, indent=2))

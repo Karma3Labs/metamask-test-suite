@@ -175,7 +175,10 @@ def generate_input_csv_file(init_network_attestations_list: list, scenario_attes
         attestation_type = 1 if attestation["type"] == 'StatusCredential' else 2
         timestamp = current_unix_timestamp
         seq_num = i+1
-        row = [seq_num, timestamp * 1000, attestation_type, attestation]
+        # row = [seq_num, timestamp * 1000, attestation_type, attestation]
+        row = f"{seq_num};{timestamp * 1000};{attestation_type};{attestation}\n"
+        row = row.replace("'", '"')
+
         csv_rows.append(row)
 
         # increment timestamp
@@ -186,12 +189,17 @@ def generate_input_csv_file(init_network_attestations_list: list, scenario_attes
         attestation_type = 1 if attestation["type"] == 'StatusCredential' else 2
         timestamp = current_unix_timestamp
         seq_num = len(csv_rows)+i+1
-        row = [seq_num, timestamp * 1000, attestation_type, attestation]
+        #row = [seq_num, timestamp * 1000, attestation_type, attestation]
+        row = f"{seq_num};{timestamp * 1000};{attestation_type};{attestation}\n"
+        row = row.replace("'", '"')
+
         csv_rows.append(row)
 
         # increment timestamp
         current_unix_timestamp += 10
 
     with open(file_name, 'w', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter=';')
-        csv_writer.writerows(csv_rows)
+        #csv_writer = csv.writer(csv_file, delimiter=';')
+        #csv_writer.writerows(csv_rows)
+        for row in csv_rows:
+            csv_file.write(row)

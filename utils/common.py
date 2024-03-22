@@ -37,7 +37,7 @@ def generate_base_trust_credential_payload(src_address, dest_address):
 
 def add_software_security_role_to_trust_credential(trust_credential_payload, trust_level):
     role_details = {
-        "scope": "software security",
+        "scope": "Software security",
         "level": trust_level,
         "reason": []
     }
@@ -48,7 +48,7 @@ def add_software_security_role_to_trust_credential(trust_credential_payload, tru
 
 def add_software_development_role_to_trust_credential(trust_credential_payload, trust_level):
     role_details = {
-        "scope": "software development",
+        "scope": "Software development",
         "level": trust_level,
         "reason": []
     }

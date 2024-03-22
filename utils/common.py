@@ -170,7 +170,7 @@ def generate_dispute_snap_payload(src_address, snap_checksum, reasons):
 def generate_input_csv_file(init_network_attestations_list: list, scenario_attestations_list: list, file_name: str):
     csv_rows = []
 
-    current_unix_timestamp = int(time.time())
+    current_unix_timestamp = 1704067200
     for i, attestation in enumerate(init_network_attestations_list):
         attestation_type = 1 if attestation["type"] == 'StatusCredential' else 2
         timestamp = current_unix_timestamp

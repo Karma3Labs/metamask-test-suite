@@ -185,10 +185,11 @@ def generate_input_csv_file(init_network_attestations_list: list, scenario_attes
         current_unix_timestamp += 10
 
     current_unix_timestamp += 600
+    starting_seq_num = len(csv_rows)
     for i, attestation in enumerate(scenario_attestations_list):
         attestation_type = 1 if attestation["type"] == 'StatusCredential' else 2
         timestamp = current_unix_timestamp
-        seq_num = len(csv_rows)+i+1
+        seq_num = starting_seq_num+i+1
         #row = [seq_num, timestamp * 1000, attestation_type, attestation]
         row = f"{seq_num};{timestamp * 1000};{attestation_type};{attestation}\n"
         row = row.replace("'", '"')

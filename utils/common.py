@@ -201,5 +201,14 @@ def generate_input_csv_file(init_network_attestations_list: list, scenario_attes
     with open(file_name, 'w', newline='') as csv_file:
         #csv_writer = csv.writer(csv_file, delimiter=';')
         #csv_writer.writerows(csv_rows)
+        row = None
         for row in csv_rows:
+            csv_file.write(row)
+        # A dummy repeated record to force the final recompute
+        # TODO(ek): remove this hack once the indexer can signal checkpoints to SSC
+        if row is not None:  # was there a last row to repeat, i.e. at least one row?
+            row = row.split(';', 3)
+            row[0] = str(int(row[0]) + 1) # increment seq
+            row[1] = str(int(row[1]) + 10 * 60 * 1000) # 10 minutes, in milliseconds
+            row = ';'.join(row)
             csv_file.write(row)

@@ -80,7 +80,7 @@ def execute_sybil_endorse_one_pretrust(pretrusted_peers: list, sybil_root_peer_i
 
 def execute_sybil_endorse_all_pretrust(pretrusted_peers: list, sybil_root_peer_id: str, sybil_cluster_size: int, bad_snap_id: str):
     execute_sybil_endorse_attestations = execute_sybil_endorse(
-        pretrusted_peers=mock_pretrusted_peers,
+        pretrusted_peers=pretrusted_peers,
         pretrusted_endorsement_num = len(pretrusted_peers),
         sybil_root_peer_id=sybil_root_peer_id,
         sybil_cluster_size=sybil_cluster_size,
@@ -90,7 +90,7 @@ def execute_sybil_endorse_all_pretrust(pretrusted_peers: list, sybil_root_peer_i
     return execute_sybil_endorse_attestations
 
 
-def run_execute_sleeper_sybil_endorse_all_pretrust():
+def run_execute_sleeper_sybil_endorse_all_pretrust(sybil_cluster_size):
     mock_pretrusted_peers = [
         'pretrusted_peer_id_1',
         'pretrusted_peer_id_2',
@@ -111,7 +111,7 @@ def run_execute_sleeper_sybil_endorse_all_pretrust():
 
     mock_bad_snap_id = 'bad_snap_id_1'
     mock_rouge_peer_id = 'normal_peer_id_1' # sleeper agent
-    mock_sybil_cluster_size = 2 # modifiy this to change the size of sybil cluster
+    mock_sybil_cluster_size = sybil_cluster_size # modifiy this to change the size of sybil cluster
 
     initialise_network_attestations = init_network_state(
         pretrusted_peers=mock_pretrusted_peers,
@@ -126,10 +126,10 @@ def run_execute_sleeper_sybil_endorse_all_pretrust():
         bad_snap_id=mock_bad_snap_id
     )
 
-    return initialise_network_attestations + execute_sybil_endorse_attestations
+    return f"compute_inputs/sleeper_sybil/all_pretrust/sleeper_sybil_all_pretrust_{sybil_cluster_size}_sybil_peers.csv", initialise_network_attestations + execute_sybil_endorse_attestations
 
 
-def run_execute_sleeper_sybil_endorse_one_pretrust():
+def run_execute_sleeper_sybil_endorse_one_pretrust(sybil_cluster_size):
     mock_pretrusted_peers = [
         'pretrusted_peer_id_1',
         'pretrusted_peer_id_2',
@@ -150,7 +150,7 @@ def run_execute_sleeper_sybil_endorse_one_pretrust():
 
     mock_bad_snap_id = 'bad_snap_id_1'
     mock_rouge_peer_id = 'normal_peer_id_1' # sleeper agent
-    mock_sybil_cluster_size = 2 # modifiy this to change the size of sybil cluster
+    mock_sybil_cluster_size = sybil_cluster_size # modifiy this to change the size of sybil cluster
 
     initialise_network_attestations = init_network_state(
         pretrusted_peers=mock_pretrusted_peers,
@@ -165,7 +165,7 @@ def run_execute_sleeper_sybil_endorse_one_pretrust():
         bad_snap_id=mock_bad_snap_id
     )
 
-    return initialise_network_attestations + execute_sybil_endorse_attestations
+    return f"compute_inputs/sleeper_sybil/one_pretrust/sleeper_sybil_one_pretrust_{sybil_cluster_size}_sybil_peers.csv", initialise_network_attestations + execute_sybil_endorse_attestations
 
 
 if __name__ == "__main__":

@@ -67,7 +67,7 @@ def execute_sybil_endorse(pretrusted_peers: list, sybil_root_peer_id: str, sybil
     return create_sybil_cluster_attestation_list + endorse_malicious_snaps_attestation_list
 
 
-def run_execute_full_mesh_sybil_endorse():
+def run_execute_full_mesh_sybil_endorse(sybil_cluster_size):
     mock_pretrusted_peers = [
         'pretrusted_peer_id_1',
         'pretrusted_peer_id_2',
@@ -88,7 +88,7 @@ def run_execute_full_mesh_sybil_endorse():
 
     mock_bad_snap_id = 'bad_snap_id_1'
     mock_sybil_root_peer_id = 'sybil_root_peer_id_1'
-    mock_sybil_cluster_size = 2 # modifiy this to change the size of sybil cluster
+    mock_sybil_cluster_size = sybil_cluster_size # modifiy this to change the size of sybil cluster
 
     initialise_network_attestations = init_network_state(
         pretrusted_peers=mock_pretrusted_peers,
@@ -103,7 +103,7 @@ def run_execute_full_mesh_sybil_endorse():
         bad_snap_id=mock_bad_snap_id
     )
 
-    return initialise_network_attestations + execute_sybil_endorse_attestations
+    return f"compute_inputs/full_mesh_sybil/full_mesh_sybil_{sybil_cluster_size}_sybil_peers.csv", initialise_network_attestations + execute_sybil_endorse_attestations
 
 
 if __name__ == "__main__":

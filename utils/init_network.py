@@ -21,8 +21,8 @@ def init_network_state(pretrusted_peers: list, normal_peers: list, snaps: list):
     for peer in normal_peers:
         for snap in snaps:
             endorse_snaps_attestation = generate_endorse_snap_payload(
-                src_address=snap,
-                snap_checksum=peer,
+                src_address=peer,
+                snap_checksum=snap,
                 reasons={}
             )
             attestation_payload_list.append(endorse_snaps_attestation)

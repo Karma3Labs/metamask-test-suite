@@ -25,6 +25,3 @@ if __name__ == "__main__":
         scenario_attestations_list=scenario_attestations_list,
         file_name=file_name
     )
-
-# ./run_simulation.sh /Users/cheeweetan/Desktop/metamask/rs-eigentrust/simple_sybil_input.csv /Users/cheeweetan/Desktop/metamask/rs-eigentrust/pretrust.txt
-#./run_simulation.sh /Users/cheeweetan/Desktop/metamask-test-suite/compute_inputs/simple_sybil/simple_sybil_1_sybil_peers.csv /Users/cheeweetan/Desktop/rs-eigentrust/pretrust.txt
